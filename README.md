@@ -1,1 +1,0 @@
-# CubicChat-backend
