@@ -5,7 +5,7 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", (req: Request, res: Response) => {
-  return getUserProfile(res.locals.userId);
+  return getUserProfile(res.locals.userId, res);
 });
 
 router.put("/username-edit", (req: Request, res: Response) => {

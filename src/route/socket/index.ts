@@ -1,5 +1,9 @@
 import { Server as HttpServer } from "http";
 import { Server as SocketServer } from "socket.io";
+import {
+  ClientToServerEvents,
+  ServerToClientEvents,
+} from "../../types/socket.types";
 
 module.exports = (server: HttpServer) => {
   const io = new SocketServer<ClientToServerEvents, ServerToClientEvents>(

@@ -7,7 +7,7 @@ Table User {
   email String [unique, not null]
   password String [not null]
   username String [not null]
-  profilePic Int [not null]
+  profileImage String [not null]
   createdAt DateTime [default: `now()`, not null]
   Message Message [not null]
   ChatRoom ChatRoom [not null]

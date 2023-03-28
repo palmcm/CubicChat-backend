@@ -3,10 +3,9 @@ import { createServer } from "http";
 const express = require("express");
 const app = express();
 
-const httpServer = require("http");
-const server = httpServer.createServer(app);
-const chatSocket = require("./socket");
-const io = chatSocket(server);
+const httpServer = createServer(app);
+const chatSocket = require("./route/socket");
+const io = chatSocket(httpServer);
 
 const port = process.env.PORT || 3000;
 
