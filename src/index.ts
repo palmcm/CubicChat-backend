@@ -25,9 +25,10 @@ const port = process.env.PORT || 3000;
 
 const authRouter = require("./route/auth");
 const profileRouter = require("./route/profile");
+const authMiddleware = require("./middleware/auth");
 
 app.use("/auth", authRouter);
-app.use("/profile", profileRouter);
+app.use("/profile", authMiddleware, profileRouter);
 
 httpServer.listen(3000, () => {
   console.log("Server started on port 3000");

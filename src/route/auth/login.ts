@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import prisma from "../../prisma";
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 module.exports = async (req: Request, res: Response) => {
   try {
@@ -19,10 +20,19 @@ module.exports = async (req: Request, res: Response) => {
     );
     if (!isPasswordCorrect)
       return res.status(401).send("Email or password is incorrect");
+    const token = jwt.sign({ userId: user.userId }, process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_EXPIRES_IN,
+    });
 
-    req.cookies.userId = user.userId;
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    });
+
     res.status(200).send("User successfully logged in");
   } catch (error) {
-    res.status(500).send(error);
+    console.log(error);
+    return res.status(500).send("Server error login endpoint");
   }
 };

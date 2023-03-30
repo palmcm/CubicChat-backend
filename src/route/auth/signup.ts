@@ -29,6 +29,6 @@ module.exports = async (req: Request, res: Response) => {
 
     return res.status(200).send("User successfully signed up");
   } catch (error) {
-    return res.status(500).send(error);
+    return res.status(500).send("Server error signup endpoint");
   }
 };
