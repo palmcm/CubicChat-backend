@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import prisma from '../../prisma'
 
-module.exports = async (req: Request, res: Response) => {
+const getUserProfile = async (req: Request, res: Response) => {
   try {
     const userId: string = res.locals.userId
     const profile = await prisma.user.findUnique({
@@ -18,3 +18,5 @@ module.exports = async (req: Request, res: Response) => {
     res.status(500).send(error)
   }
 }
+
+export default getUserProfile

@@ -1,7 +1,8 @@
 import { Request, Response } from 'express'
+
 const jwt = require('jsonwebtoken')
 
-module.exports = async (req: Request, res: Response, next: () => {}) => {
+const auth = async (req: Request, res: Response, next: () => {}) => {
   try {
     const token = req.cookies.token
     jwt.verify(token, process.env.JWT_SECRET, (err: any, decoded: any) => {
@@ -14,3 +15,5 @@ module.exports = async (req: Request, res: Response, next: () => {}) => {
     return res.status(500).send('Server error auth middleware')
   }
 }
+
+export default auth

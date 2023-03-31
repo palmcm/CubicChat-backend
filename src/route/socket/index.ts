@@ -5,7 +5,7 @@ import {
   ServerToClientEvents,
 } from '../../types/socket.types'
 
-module.exports = (server: HttpServer) => {
+const socket = (server: HttpServer) => {
   const io = new SocketServer<ClientToServerEvents, ServerToClientEvents>(
     server,
   )
@@ -24,3 +24,5 @@ module.exports = (server: HttpServer) => {
 
   return io
 }
+
+export default socket

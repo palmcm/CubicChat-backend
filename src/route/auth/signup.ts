@@ -1,8 +1,8 @@
 import { Request, Response } from 'express'
 import prisma from '../../prisma'
-const bcrypt = require('bcryptjs')
+import bcrypt from 'bcryptjs'
 
-module.exports = async (req: Request, res: Response) => {
+const signup = async (req: Request, res: Response) => {
   try {
     const email: string = req.body.email
     const password: string = req.body.password
@@ -32,3 +32,5 @@ module.exports = async (req: Request, res: Response) => {
     return res.status(500).send('Server error signup endpoint')
   }
 }
+
+export default signup

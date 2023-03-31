@@ -1,9 +1,9 @@
 import { Request, Response } from 'express'
 import prisma from '../../prisma'
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
+import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken'
 
-module.exports = async (req: Request, res: Response) => {
+const logout = async (req: Request, res: Response) => {
   try {
     res.clearCookie('token')
 
@@ -13,3 +13,5 @@ module.exports = async (req: Request, res: Response) => {
     return res.status(500).send('Server error login endpoint')
   }
 }
+
+export default logout

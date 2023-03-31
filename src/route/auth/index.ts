@@ -1,4 +1,4 @@
-const express = require('express')
+import express from 'express'
 const router = express.Router()
 
 router.post('/signup', require('./signup'))
@@ -7,4 +7,4 @@ router.post('/login', require('./login'))
 
 router.get('/logout', require('./logout'))
 
-module.exports = router
+export default router

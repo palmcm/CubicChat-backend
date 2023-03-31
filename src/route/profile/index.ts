@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
+import express from 'express'
 
-const express = require('express')
 const router = express.Router()
 
 router.get('/', require('./getUserProfile'))
@@ -13,4 +13,4 @@ router.put('/image-random', (req: Request, res: Response) => {
   // code to random a user's profile image
 })
 
-module.exports = router
+export default router
