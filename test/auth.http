@@ -1,0 +1,26 @@
+@baseUrl = {{$dotenv BASE_URL}}
+
+###
+# @name signup
+POST {{baseUrl}}/auth/signup
+Content-Type: application/json
+
+{
+  "email" : "test@gmail.com",
+  "password": "password",
+  "username": "testUser"
+}
+
+###
+# @name login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email" : "test@gmail.com",
+  "password": "password"
+}
+
+###
+# @name logout
+GET {{baseUrl}}/auth/logout

@@ -1,0 +1,6 @@
+@baseUrl = {{$dotenv BASE_URL}}
+
+###
+# @name getProfile
+GET {{baseUrl}}/profile
+
