@@ -1,7 +1,8 @@
-import { Request, Response } from 'express'
-import prisma from '../../prisma'
 import bcrypt from 'bcryptjs'
+import { Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
+
+import prisma from '../../prisma'
 
 const login = async (req: Request, res: Response) => {
   try {

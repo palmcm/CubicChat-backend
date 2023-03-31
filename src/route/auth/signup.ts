@@ -1,6 +1,7 @@
-import { Request, Response } from 'express'
-import prisma from '../../prisma'
 import bcrypt from 'bcryptjs'
+import { Request, Response } from 'express'
+
+import prisma from '../../prisma'
 
 const signup = async (req: Request, res: Response) => {
   try {
@@ -18,7 +19,7 @@ const signup = async (req: Request, res: Response) => {
     if (user) return res.status(409).send('User already exists')
 
     const hashedPassword: string = await bcrypt.hash(password, 10)
-    const newUser = await prisma.user.create({
+    await prisma.user.create({
       data: {
         email,
         password: hashedPassword,

@@ -1,7 +1,4 @@
 import { Request, Response } from 'express'
-import prisma from '../../prisma'
-import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
 
 const logout = async (req: Request, res: Response) => {
   try {
