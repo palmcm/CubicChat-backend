@@ -1,9 +1,9 @@
-import { Request, Response } from "express";
-import prisma from "../../prisma";
+import { Request, Response } from 'express'
+import prisma from '../../prisma'
 
 module.exports = async (req: Request, res: Response) => {
   try {
-    const userId: string = res.locals.userId;
+    const userId: string = res.locals.userId
     const profile = await prisma.user.findUnique({
       where: {
         userId,
@@ -12,9 +12,9 @@ module.exports = async (req: Request, res: Response) => {
         username: true,
         profileImage: true,
       },
-    });
-    res.status(200).send(JSON.stringify(profile));
+    })
+    res.status(200).send(JSON.stringify(profile))
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).send(error)
   }
-};
+}

@@ -1,34 +1,34 @@
-import { Request, Response } from "express";
-import prisma from "../../prisma";
-const bcrypt = require("bcryptjs");
+import { Request, Response } from 'express'
+import prisma from '../../prisma'
+const bcrypt = require('bcryptjs')
 
 module.exports = async (req: Request, res: Response) => {
   try {
-    const email: string = req.body.email;
-    const password: string = req.body.password;
-    const username: string = req.body.username;
+    const email: string = req.body.email
+    const password: string = req.body.password
+    const username: string = req.body.username
     if (!email || !password || !username)
-      return res.status(400).send("Bad request");
+      return res.status(400).send('Bad request')
 
     const user = await prisma.user.findUnique({
       where: {
         email,
       },
-    });
-    if (user) return res.status(409).send("User already exists");
+    })
+    if (user) return res.status(409).send('User already exists')
 
-    const hashedPassword: string = await bcrypt.hash(password, 10);
+    const hashedPassword: string = await bcrypt.hash(password, 10)
     const newUser = await prisma.user.create({
       data: {
         email,
         password: hashedPassword,
         username,
-        profileImage: "temp123",
+        profileImage: 'temp123',
       },
-    });
+    })
 
-    return res.status(200).send("User successfully signed up");
+    return res.status(200).send('User successfully signed up')
   } catch (error) {
-    return res.status(500).send("Server error signup endpoint");
+    return res.status(500).send('Server error signup endpoint')
   }
-};
+}
