@@ -9,7 +9,8 @@
     "start": "ts-node src/index.ts",
     "dev": "nodemon --exec ts-node src/index.ts",
     "generate": "prisma generate",
-    "migrate": "prisma migrate dev"
+    "migrate": "prisma migrate dev",
+    "lint": "yarn eslint . --ext .ts"
   },
   "compilerOptions": {
     "target": "es2016",
@@ -39,6 +40,10 @@
     "@types/bcryptjs": "^2.4.2",
     "@types/jsonwebtoken": "^9.0.1",
     "@types/node": "^18.15.10",
+    "@typescript-eslint/eslint-plugin": "^5.57.0",
+    "@typescript-eslint/parser": "^5.57.0",
+    "eslint": "^8.37.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
     "nodemon": "^2.0.22",
     "prisma": "^4.12.0",
     "prisma-dbml-generator": "^0.10.0",
