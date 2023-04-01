@@ -31,7 +31,7 @@ const login = async (req: Request, res: Response) => {
       sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
     })
 
-    res.status(200).send('User successfully logged in')
+    return res.status(200).send('User successfully logged in')
   } catch (error) {
     console.log(error)
     return res.status(500).send('Server error login endpoint')

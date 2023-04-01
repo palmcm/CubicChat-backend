@@ -14,9 +14,9 @@ const getUserProfile = async (req: Request, res: Response) => {
         profileImage: true,
       },
     })
-    res.status(200).send(JSON.stringify(profile))
+    return res.status(200).send(JSON.stringify(profile))
   } catch (error) {
-    res.status(500).send(error)
+    return res.status(500).send('Server error get user profile endpoint')
   }
 }
 
