@@ -35,7 +35,7 @@ enum ChatRoomType {
 model ChatRoom {
   chatRoomId   String       @id @default(cuid())
   chatRoomType ChatRoomType
-  name         String
+  name         String?
   createdAt    DateTime     @default(now())
   updatedAt    DateTime     @updatedAt
 
@@ -53,13 +53,17 @@ model Message {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  messageType MessageType
+
   chatRoomId String
   chatRoom   ChatRoom @relation(fields: [chatRoomId], references: [chatRoomId])
 
   senderId String
-  user     User   @relation(fields: [senderId], references: [userId])
+  sender   User   @relation(fields: [senderId], references: [userId])
 
   content String
+
+  @@index([chatRoomId, createdAt])
 }
 
 model Sticker {

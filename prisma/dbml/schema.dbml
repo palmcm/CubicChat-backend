@@ -16,7 +16,7 @@ Table User {
 Table ChatRoom {
   chatRoomId String [pk]
   chatRoomType ChatRoomType [not null]
-  name String [not null]
+  name String
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [not null]
   messages Message [not null]
@@ -27,10 +27,11 @@ Table Message {
   messageId String [pk]
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [not null]
+  messageType MessageType [not null]
   chatRoomId String [not null]
   chatRoom ChatRoom [not null]
   senderId String [not null]
-  user User [not null]
+  sender User [not null]
   content String [not null]
 }
 
