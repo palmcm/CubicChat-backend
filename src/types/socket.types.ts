@@ -4,9 +4,9 @@ export interface ServerToClientEvents {
   chatMessage: (data: {
     sender: string
     profileImage: string
-    roomId: string
-    type: MessageType
-    message: string
+    chatRoomId: string
+    messageType: MessageType
+    content: string
     timestamp: Date
   }) => void
   notify: (roomId: string) => void
@@ -14,8 +14,12 @@ export interface ServerToClientEvents {
 }
 
 export interface ClientToServerEvents {
-  chatMessage: (roomId: string, type: MessageType, message: string) => void
+  chatMessage: (
+    roomId: string,
+    type: MessageType,
+    message: string,
+  ) => Promise<void>
   join: (roomId: string) => void
   leave: (roomId: string) => void
-  addRoom: (roomId: string, userId: string) => void
+  addRoom: (roomId: string, userId?: string) => Promise<void>
 }
