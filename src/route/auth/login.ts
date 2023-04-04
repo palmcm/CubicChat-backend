@@ -28,8 +28,7 @@ const login = async (req: Request, res: Response) => {
     res.cookie('token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      domain:
-        process.env.NODE_ENV === 'production' ? '.cubiccopper.net' : undefined,
+      sameSite: 'none',
     })
 
     return res.status(200).send('User successfully logged in')
