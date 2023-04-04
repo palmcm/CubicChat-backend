@@ -19,12 +19,13 @@ const signup = async (req: Request, res: Response) => {
     if (user) return res.status(409).send('User already exists')
 
     const hashedPassword: string = await bcrypt.hash(password, 10)
+    const seed = (Math.random() * 1000).toFixed(0)
     await prisma.user.create({
       data: {
         email,
         password: hashedPassword,
         username,
-        profileImage: 'temp123',
+        profileImage: `https://picsum.photos/seed/${seed}/200`,
       },
     })
 
