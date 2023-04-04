@@ -27,12 +27,12 @@ chatSocket(httpServer)
 
 const port = process.env.PORT || 3000
 
+app.use('/auth', authRouter)
+app.use('/profile', authMiddleware, profileRouter)
+
 app.use('/', (req, res) => {
   res.send('Hello world')
 })
-
-app.use('/auth', authRouter)
-app.use('/profile', authMiddleware, profileRouter)
 
 httpServer.listen(port, () => {
   console.log(`Server started on port ${port}`)
