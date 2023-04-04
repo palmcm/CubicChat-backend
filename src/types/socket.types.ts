@@ -4,7 +4,6 @@ export interface ServerToClientEvents {
   chatMessage: (data: {
     sender: string
     profileImage: string
-    chatRoomId: string
     messageType: MessageType
     content: string
     timestamp: Date

@@ -10,6 +10,7 @@ const getUserProfile = async (req: Request, res: Response) => {
         userId,
       },
       select: {
+        userId: true,
         username: true,
         profileImage: true,
       },
