@@ -2,7 +2,8 @@ import { MessageType } from '@prisma/client'
 
 export interface ServerToClientEvents {
   chatMessage: (data: {
-    sender: string
+    senderId: string
+    senderName: string
     profileImage: string
     messageType: MessageType
     content: string

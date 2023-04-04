@@ -60,7 +60,8 @@ const socket = (server: HttpServer) => {
         //   },
         // })
         io.to('chat:' + chatRoomId).emit('chatMessage', {
-          sender: username,
+          senderId: userId,
+          senderName: username,
           profileImage: user.profileImage,
           messageType,
           content,
