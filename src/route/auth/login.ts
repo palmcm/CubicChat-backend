@@ -29,6 +29,10 @@ const login = async (req: Request, res: Response) => {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+      domain:
+        process.env.NODE_ENV === 'production'
+          ? '.cubicchat.cubiccopper.net'
+          : undefined,
     })
 
     return res.status(200).send('User successfully logged in')
