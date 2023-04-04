@@ -51,14 +51,14 @@ const socket = (server: HttpServer) => {
       'chatMessage',
       async (chatRoomId: string, messageType: MessageType, content: string) => {
         if (!socket.rooms.has('chat:' + chatRoomId)) return
-        await prisma.message.create({
-          data: {
-            senderId: userId,
-            messageType,
-            chatRoomId,
-            content,
-          },
-        })
+        // await prisma.message.create({
+        //   data: {
+        //     senderId: userId,
+        //     messageType,
+        //     chatRoomId,
+        //     content,
+        //   },
+        // })
         io.to('chat:' + chatRoomId).emit('chatMessage', {
           sender: username,
           profileImage: user.profileImage,
