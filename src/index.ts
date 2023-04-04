@@ -3,7 +3,8 @@ import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import express from 'express'
 import fs from 'fs'
-import { createServer } from 'https'
+import { createServer as createHttpServer } from 'http'
+import { createServer as createHttpsServer } from 'https'
 
 import authMiddleware from './middleware/auth'
 import authRouter from './route/auth'
@@ -30,9 +31,9 @@ let httpServer
 if (process.env.NODE_ENV === 'production') {
   const key = fs.readFileSync(__dirname + '/../ssl/privatekey.pem')
   const cert = fs.readFileSync(__dirname + '/../ssl/certificate.pem')
-  httpServer = createServer({ key, cert }, app)
+  httpServer = createHttpsServer({ key, cert }, app)
 } else {
-  httpServer = createServer(app)
+  httpServer = createHttpServer(app)
 }
 chatSocket(httpServer)
 
