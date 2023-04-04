@@ -30,7 +30,7 @@ const login = async (req: Request, res: Response) => {
       secure: process.env.NODE_ENV === 'production',
       domain:
         process.env.NODE_ENV === 'production'
-          ? '.cubicchat.cubiccopper.net'
+          ? 'cubicchat.cubiccopper.net'
           : undefined,
     })
 
