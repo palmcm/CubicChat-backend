@@ -21,7 +21,11 @@ app.use(bodyParser.json())
 
 app.use(cookieParser())
 
-app.use(cors())
+app.use(
+  cors({
+    origin: 'https://cubicchat.cubiccopper.net',
+  }),
+)
 
 let httpServer
 if (process.env.NODE_ENV === 'production') {
