@@ -23,7 +23,7 @@ app.use(cookieParser())
 
 app.use(
   cors({
-    origin: 'https://cubicchat.cubiccopper.net',
+    origin: true,
     credentials: true,
   }),
 )
