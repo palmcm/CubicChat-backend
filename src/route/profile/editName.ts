@@ -5,7 +5,7 @@ import prisma from '../../prisma'
 const edit_name = async (req: Request, res: Response) => {
     try{
         const userId: string = res.locals.userId
-        const username = req.body.username
+        const username: string = req.body.username
         await prisma.user.update({
             where: {
                 userId: userId

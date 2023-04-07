@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import express from 'express'
 
-import edit_name from './edit_name'
+import edit_name from './editName'
 import getUserProfile from './getUserProfile'
 
 const router = express.Router()
