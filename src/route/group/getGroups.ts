@@ -4,12 +4,11 @@ import prisma from '../../prisma'
 
 const getGroups = async (req: Request, res: Response) => {
     try{
-        const rawGroups = await prisma.chatRoom.findMany()
-        const groups = rawGroups.map(group => {
-            return {
-                chatRoomId: group.chatRoomId,
-                name: group.name,
-            }
+        const groups = await prisma.chatRoom.findMany({
+            select: {
+                chatRoomId: true,
+                name: true
+            },
         })
         return res.status(200).send(groups)
     }

@@ -5,7 +5,7 @@ import prisma from '../../prisma'
 const getRecentGroups = async (req: Request, res: Response) => {
     try{
         const userId: string = res.locals.userId
-        const rawGroups = await prisma.chatRoom.findMany({
+        const groups = await prisma.chatRoom.findMany({
             where: {
                 User: {
                     some: {
@@ -13,27 +13,14 @@ const getRecentGroups = async (req: Request, res: Response) => {
                     }
                 }
             },
-            include: {
-                User: true
-            }
-        })
-        const unsortedGroups = rawGroups.map(group => {
-            return {
-                chatRoomId: group.chatRoomId,
-                name: group.name,
-                chatRoomType: group.chatRoomType,
-                updatedAt: group.updatedAt,
-            }
-        })
-        unsortedGroups.sort((a, b) => {
-            return b.updatedAt.getTime() - a.updatedAt.getTime()
-        })
-        const groups = unsortedGroups.map(group => {
-            return {
-                chatRoomId: group.chatRoomId,
-                name: group.name,
-                chatRoomType: group.chatRoomType,
-            }
+            select: {
+                chatRoomId: true,
+                name: true,
+                chatRoomType: true,
+            },
+            orderBy: {
+                updatedAt: 'desc'
+            },
         })
         return res.status(200).send(groups)
     }

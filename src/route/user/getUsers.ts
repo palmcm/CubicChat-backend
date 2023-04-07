@@ -4,12 +4,11 @@ import prisma from '../../prisma'
 
 const getUsers = async (req: Request, res: Response) => {
     try{
-        const rawUsers = await prisma.user.findMany()
-        const users = rawUsers.map(user => {
-            return {
-                userId: user.userId,
-                username: user.username,
-                profileImage: user.profileImage
+        const users = await prisma.user.findMany({
+            select: {
+                userId: true,
+                username: true,
+                profileImage: true
             }
         })
         return res.status(200).send(users)

@@ -4,11 +4,10 @@ import prisma from '../../prisma'
 
 const getStickers = async (req: Request, res: Response) => {
     try{
-        const rawStickers = await prisma.sticker.findMany()
-        const stickers = rawStickers.map(sticker => {
-            return {
-                stickerName: sticker.stickerName,
-                stickerUrl: sticker.stickerUrl
+        const stickers = await prisma.sticker.findMany({
+            select: {
+                stickerName: true,
+                stickerUrl: true
             }
         })
         return res.status(200).send(stickers)
