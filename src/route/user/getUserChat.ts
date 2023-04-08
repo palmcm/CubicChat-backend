@@ -2,6 +2,7 @@ import { ChatRoom, ChatRoomType } from '@prisma/client'
 import { Request, Response } from 'express'
 
 import prisma from '../../prisma'
+import { chatRoomIdDto } from '../../types/group.types'
 
 const getUserChatRoom = async (req: Request, res: Response) => {
   try {
@@ -41,9 +42,10 @@ const getUserChatRoom = async (req: Request, res: Response) => {
         },
       },
     })
+    const ret: chatRoomIdDto = { chatRoomId: newRoom.chatRoomId }
     return res
       .status(200)
-      .send(JSON.stringify({ chatRoomId: newRoom.chatRoomId }))
+      .send(JSON.stringify(ret))
   } catch (error) {
     console.log(error)
     return res.status(500).send('Server error get user chatroom endpoint')

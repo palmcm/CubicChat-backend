@@ -1,6 +1,6 @@
 
 export interface getUserDto {
-    userId: number,
+    userId: string,
     username: string,
     profileImage: string
 }

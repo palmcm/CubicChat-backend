@@ -1,16 +1,19 @@
 import { Request, Response } from 'express'
 
 import prisma from '../../prisma'
+import { getUsersDto } from '../../types/user.types'
 
 const getUsers = async (req: Request, res: Response) => {
     try{
-        const users = await prisma.user.findMany({
-            select: {
-                userId: true,
-                username: true,
-                profileImage: true
-            }
-        })
+        const users: getUsersDto = {
+            users: await prisma.user.findMany({
+                select: {
+                    userId: true,
+                    username: true,
+                    profileImage: true
+                }
+            })
+        }
         return res.status(200).send(users)
     }
     catch(error){

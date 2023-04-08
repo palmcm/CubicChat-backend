@@ -1,15 +1,18 @@
 import { Request, Response } from 'express'
 
 import prisma from '../../prisma'
+import {getGroupsDto } from '../../types/group.types'
 
 const getGroups = async (req: Request, res: Response) => {
     try{
-        const groups = await prisma.chatRoom.findMany({
-            select: {
-                chatRoomId: true,
-                name: true
-            },
-        })
+        const groups: getGroupsDto = {
+            groups: await prisma.chatRoom.findMany({
+                select: {
+                    chatRoomId: true,
+                    name: true
+                },
+            })
+        }
         return res.status(200).send(groups)
     }
     catch(error){

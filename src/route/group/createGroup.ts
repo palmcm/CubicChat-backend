@@ -2,6 +2,7 @@ import { ChatRoomType } from '@prisma/client'
 import { Request, Response } from 'express'
 
 import prisma from '../../prisma'
+import { chatRoomIdDto } from '../../types/group.types'
 
 const createGroup = async (req: Request, res: Response) => {
   try {
@@ -17,8 +18,8 @@ const createGroup = async (req: Request, res: Response) => {
         },
       },
     })
-
-    return res.status(200).send(JSON.stringify({ chatRoomId: room.chatRoomId }))
+    const ret: chatRoomIdDto = { chatRoomId: room.chatRoomId }
+    return res.status(200).send(JSON.stringify(ret))
   } catch (error) {
     console.log(error)
     return res.status(500).send('Server error create group endpoint')

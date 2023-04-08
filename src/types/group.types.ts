@@ -1,11 +1,18 @@
 
 
 export interface getGroupDto {
-    chatRoomId: number,
-    name: string,
-    chatRoomType: string,
+    chatRoomId: string,
+    name: string | null,
 }
 
 export interface getGroupsDto {
     groups: getGroupDto[]
+}
+
+export interface chatRoomIdDto {
+    chatRoomId: string,
+}
+
+export interface joinGroupDto {
+    roomId: string,
 }

@@ -1,11 +1,12 @@
 import { Request, Response } from 'express'
 
 import prisma from '../../prisma'
+import { getUserProfileDto } from '../../types/profile.types'
 
 const getUserProfile = async (req: Request, res: Response) => {
   try {
     const userId: string = res.locals.userId
-    const profile = await prisma.user.findUnique({
+    const profile: getUserProfileDto | null = await prisma.user.findUnique({
       where: {
         userId,
       },
