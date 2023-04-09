@@ -6,7 +6,7 @@ const auth = async (req: Request, res: Response, next: () => void) => {
     const token = req.cookies.token
 
     const verifyCallback: VerifyCallback = (err, decoded) => {
-      if (err) return res.status(401).send('Unauthorized')
+      if (err) return res.status(401).send('Not login')
       res.locals.userId = (decoded as { userId: string }).userId
       next()
     }
