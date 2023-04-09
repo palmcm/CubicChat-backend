@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 
 import prisma from '../../prisma'
-import { getChatMessageDto } from '../../types/room.types'
+import { GetChatMessageDto } from '../../types/room.types'
 
 const roomHistory = async (req: Request, res: Response) => {
   try {
@@ -17,7 +17,7 @@ const roomHistory = async (req: Request, res: Response) => {
       },
     })
 
-    const messages: getChatMessageDto[] = await prisma.message.findMany({
+    const messages: GetChatMessageDto[] = await prisma.message.findMany({
       where: {
         chatRoomId: roomId,
       },
