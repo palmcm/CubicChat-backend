@@ -1,6 +1,6 @@
 import { MessageType } from '@prisma/client'
 
-export interface getChatMessageDto {
+export interface GetChatMessageDto {
   createdAt: Date
   messageType: MessageType
   sender: {

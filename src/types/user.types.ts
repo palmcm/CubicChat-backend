@@ -1,10 +1,9 @@
-
-export interface getUserDto {
-    userId: string,
-    username: string,
-    profileImage: string
+export interface GetUserDto {
+  userId: string
+  username: string
+  profileImage: string
 }
 
-export interface getUsersDto {
-    users: getUserDto[]
+export interface GetUsersDto {
+  users: GetUserDto[]
 }

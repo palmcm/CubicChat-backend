@@ -1,6 +1,5 @@
-
-export interface getUserProfileDto {
-    userId: string,
-    username: string,
-    profileImage: string
+export interface GetUserProfileDto {
+  userId: string
+  username: string
+  profileImage: string
 }
