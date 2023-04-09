@@ -7,9 +7,9 @@ import joinGroup from './joinGroup'
 
 const router = express.Router()
 
-router.post('/create', createGroup)
+router.post('/', createGroup)
 
-router.get('/:roomId/join', joinGroup)
+router.put('/:roomId/join', joinGroup)
 
 router.get('', getGroups)
 
