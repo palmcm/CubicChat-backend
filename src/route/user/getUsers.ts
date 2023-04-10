@@ -5,8 +5,15 @@ import { GetUsersDto } from '../../types/user.types'
 
 const getUsers = async (req: Request, res: Response) => {
   try {
+    const search: string = req.query.search as string
     const users: GetUsersDto = {
       users: await prisma.user.findMany({
+        where: {
+          username: {
+            contains: search,
+            mode: 'insensitive',
+          },
+        },
         select: {
           userId: true,
           username: true,

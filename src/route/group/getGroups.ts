@@ -6,11 +6,13 @@ import { GetGroupDto, GetGroupsDto } from '../../types/group.types'
 
 const getGroups = async (req: Request, res: Response) => {
   try {
+    const search: string = req.query.search as string
     const groups: GetGroupDto[] = await prisma.chatRoom.findMany({
       where: {
         chatRoomType: ChatRoomType.GROUP,
-        NOT: {
-          name: null,
+        name: {
+          contains: search,
+          mode: 'insensitive',
         },
       },
       select: {

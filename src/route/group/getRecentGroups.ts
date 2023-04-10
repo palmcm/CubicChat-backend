@@ -7,8 +7,13 @@ import { getRecentGroupDto } from '../../types/group.types'
 const getRecentGroups = async (req: Request, res: Response) => {
   try {
     const userId: string = res.locals.userId
+    const search: string = req.query.search as string
     const groups = await prisma.chatRoom.findMany({
       where: {
+        name: {
+          contains: search,
+          mode: 'insensitive',
+        },
         User: {
           some: {
             userId: userId,
