@@ -2,7 +2,7 @@ import { ChatRoomType } from '@prisma/client'
 import { Request, Response } from 'express'
 
 import prisma from '../../prisma'
-import { GetGroupNameDto } from '../../types/group.types'
+import { GetGroupInfoDto } from '../../types/group.types'
 
 const getGroupInfo = async (req: Request, res: Response) => {
     try {
@@ -18,7 +18,7 @@ const getGroupInfo = async (req: Request, res: Response) => {
         },
         })
         if(!group) return res.status(404).send('Group not found')
-        const groupInfo: GetGroupNameDto = {
+        const groupInfo: GetGroupInfoDto = {
             id: group.chatRoomId,
             name: '',
             imageUrl: undefined,

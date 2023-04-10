@@ -27,3 +27,9 @@ export interface getRecentGroupDto {
 export interface GetRecentGroupsDto {
   groups: getRecentGroupDto[]
 }
+
+export interface GetGroupInfoDto {
+  id: string
+  name: string
+  imageUrl?: string
+}
