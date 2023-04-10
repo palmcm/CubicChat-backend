@@ -23,6 +23,7 @@ const getRecentGroups = async (req: Request, res: Response) => {
           orderBy: { createdAt: 'desc' },
           take: 1,
         },
+        createdAt: true,
       },
       orderBy: {
         createdAt: 'desc',
@@ -30,18 +31,15 @@ const getRecentGroups = async (req: Request, res: Response) => {
     })
 
     groups.sort((a, b) => {
-      if (a.messages.length === 0 && b.messages.length === 0) return 0
-      if (a.messages.length === 0) return 1
-      if (b.messages.length === 0) return -1
-      return (
-        b.messages[0].createdAt.getTime() - a.messages[0].createdAt.getTime()
-      )
+      const atime = a.messages[0]?.createdAt.getTime() || a.createdAt.getTime()
+      const btime = b.messages[0]?.createdAt.getTime() || b.createdAt.getTime()
+      return btime - atime
     })
 
     const recents: getRecentGroupDto[] = await Promise.all(
       groups.map(async (group) => {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { messages, ...rest } = group
+        const { messages, createdAt, ...rest } = group
         if (group.chatRoomType === ChatRoomType.GROUP)
           return { ...rest, name: rest.name || 'Unknown' }
         const otherUser = await prisma.chatRoom.findFirst({
