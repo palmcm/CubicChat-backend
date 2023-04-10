@@ -40,13 +40,15 @@ const getGroupInfo = async (req: Request, res: Response) => {
                   },
                 },
             })
-            if (!(otherUser === null))
+            if (!(otherUser === null)){
                 groupInfo.imageUrl = otherUser.User[0].profileImage
+                groupInfo.name = otherUser.User[0].username
+            }
         }
         else{
             groupInfo.name = group.name ?? ''
         }
-        return res.status(200).send(group)
+        return res.status(200).send(groupInfo)
     } catch (error) {
         console.log(error)
         return res.status(500).send('Server error get group name endpoint')
