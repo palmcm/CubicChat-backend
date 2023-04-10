@@ -18,6 +18,9 @@ const roomHistory = async (req: Request, res: Response) => {
     })
 
     const messages = await prisma.message.findMany({
+      orderBy: {
+        createdAt: 'desc',
+      },
       where: {
         chatRoomId: roomId,
       },
