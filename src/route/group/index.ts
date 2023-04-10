@@ -15,4 +15,6 @@ router.get('', getGroups)
 
 router.get('/recent', getRecentGroups)
 
+router.get('/:roomId/info', getRecentGroups)
+
 export default router
