@@ -1,11 +1,10 @@
 import { MessageType } from '@prisma/client'
 
 export interface GetChatMessageDto {
-  createdAt: Date
+  senderName: string
+  senderId: string
+  profileImage: string
   messageType: MessageType
-  sender: {
-    username: string
-    profileImage: string
-  }
   content: string
+  timestamp: Date
 }

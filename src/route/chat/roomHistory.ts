@@ -17,7 +17,7 @@ const roomHistory = async (req: Request, res: Response) => {
       },
     })
 
-    const messages: GetChatMessageDto[] = await prisma.message.findMany({
+    const messages = await prisma.message.findMany({
       where: {
         chatRoomId: roomId,
       },
@@ -36,11 +36,22 @@ const roomHistory = async (req: Request, res: Response) => {
       },
     })
 
+    const formatMessages: GetChatMessageDto[] = messages.map((message) => {
+      return {
+        senderId: message.sender.username,
+        senderName: message.sender.username,
+        profileImage: message.sender.profileImage,
+        messageType: message.messageType,
+        content: message.content,
+        timestamp: message.createdAt,
+      }
+    })
+
     const maxPage = Math.ceil(chatCount / take)
     return res.status(200).send(
       JSON.stringify({
         maxPage,
-        messages,
+        messages: formatMessages,
       }),
     )
   } catch (error) {
