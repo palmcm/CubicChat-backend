@@ -8,7 +8,7 @@ const router = express.Router()
 
 router.get('/', getUserProfile)
 
-router.put('/username-edit', editName)
+router.put('/username', editName)
 
 router.put('/image-random', randomImage)
 
