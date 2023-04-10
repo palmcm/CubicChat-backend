@@ -90,7 +90,6 @@ const roomHistory = async (req: Request, res: Response) => {
         timestamp: message.createdAt,
       }
     })
-    console.log(messages)
     return res.status(200).send({
       isLastPage:
         messages.length < take ||
