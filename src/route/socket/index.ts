@@ -12,6 +12,12 @@ import verifyCookie from './verifyCookie'
 const socket = (server: HttpServer) => {
   const io = new SocketServer<ClientToServerEvents, ServerToClientEvents>(
     server,
+    {
+      cors: {
+        origin: 'https://cubicchat.cubiccopper.net',
+        credentials: true,
+      },
+    },
   )
 
   io.on('connection', async (socket) => {
