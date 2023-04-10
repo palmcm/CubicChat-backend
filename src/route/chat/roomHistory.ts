@@ -39,6 +39,7 @@ const roomHistory = async (req: Request, res: Response) => {
           messageId: true,
           sender: {
             select: {
+              userId: true,
               username: true,
               profileImage: true,
             },
@@ -66,6 +67,7 @@ const roomHistory = async (req: Request, res: Response) => {
           messageId: true,
           sender: {
             select: {
+              userId: true,
               username: true,
               profileImage: true,
             },
@@ -80,7 +82,7 @@ const roomHistory = async (req: Request, res: Response) => {
     const formatMessages: GetChatMessageDto[] = messages.map((message) => {
       return {
         messageId: message.messageId,
-        senderId: message.sender.username,
+        senderId: message.sender.userId,
         senderName: message.sender.username,
         profileImage: message.sender.profileImage,
         messageType: message.messageType,
