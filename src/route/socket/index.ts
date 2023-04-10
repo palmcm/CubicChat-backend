@@ -14,7 +14,7 @@ const socket = (server: HttpServer) => {
     server,
     {
       cors: {
-        origin: 'https://cubicchat.cubiccopper.net',
+        origin: ['https://cubicchat.cubiccopper.net', 'http://localhost:5173'],
         methods: ['GET', 'POST'],
         credentials: true,
       },
