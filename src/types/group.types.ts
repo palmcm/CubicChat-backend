@@ -19,6 +19,7 @@ export interface JoinGroupDto {
 
 export interface getRecentGroupDto {
   name: string
+  imageUrl?: string
   chatRoomId: string
   chatRoomType: ChatRoomType
 }

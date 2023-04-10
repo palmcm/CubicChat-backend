@@ -62,7 +62,11 @@ const getRecentGroups = async (req: Request, res: Response) => {
           },
         })
         if (otherUser === null) return { ...rest, name: 'Unknown' }
-        return { ...rest, name: otherUser.User[0].username }
+        return {
+          ...rest,
+          name: otherUser.User[0].username,
+          imageUrl: otherUser.User[0].profileImage,
+        }
       }),
     )
 
