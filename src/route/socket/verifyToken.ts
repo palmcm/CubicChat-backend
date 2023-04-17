@@ -1,9 +1,7 @@
-import cookie from 'cookie'
 import jwt from 'jsonwebtoken'
 
-const verifyCookie = (cookies: string | undefined) => {
-  if (!cookies) return null
-  const token = cookie.parse(cookies).token
+const verifyToken = (token: string | undefined) => {
+  if (!token) return null
   try {
     const userData = jwt.verify(token, process.env.JWT_SECRET!)
     return (userData as { userId: string }).userId
@@ -12,4 +10,4 @@ const verifyCookie = (cookies: string | undefined) => {
   }
 }
 
-export default verifyCookie
+export default verifyToken

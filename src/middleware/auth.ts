@@ -3,7 +3,10 @@ import jwt, { VerifyCallback } from 'jsonwebtoken'
 
 const auth = async (req: Request, res: Response, next: () => void) => {
   try {
-    const token = req.cookies.token
+    const bearerHeader = req.headers.authorization
+    if (!bearerHeader) return res.status(401).send('Not login')
+    const token = bearerHeader.split(' ')[1]
+    if (!token) return res.status(401).send('Not login')
 
     const verifyCallback: VerifyCallback = (err, decoded) => {
       if (err) return res.status(401).send('Not login')

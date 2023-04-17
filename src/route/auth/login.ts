@@ -25,13 +25,7 @@ const login = async (req: Request, res: Response) => {
       expiresIn: process.env.JWT_EXPIRES_IN,
     })
 
-    res.cookie('token', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'none',
-    })
-
-    return res.status(200).send('User successfully logged in')
+    return res.status(200).send({ jwtToken: token })
   } catch (error) {
     console.log(error)
     return res.status(500).send('Server error login endpoint')

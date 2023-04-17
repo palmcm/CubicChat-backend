@@ -7,7 +7,7 @@ import {
   ClientToServerEvents,
   ServerToClientEvents,
 } from '../../types/socket.types'
-import verifyCookie from './verifyCookie'
+import verifyToken from './verifyToken'
 
 const socket = (server: HttpServer) => {
   const io = new SocketServer<ClientToServerEvents, ServerToClientEvents>(
@@ -23,7 +23,10 @@ const socket = (server: HttpServer) => {
   )
 
   io.on('connection', async (socket) => {
-    const userId = verifyCookie(socket.handshake.headers.cookie)
+    const bearerHeader = socket.handshake.headers.authorization
+    if (!bearerHeader) return socket.disconnect()
+    const token = bearerHeader.split(' ')[1]
+    const userId = verifyToken(token)
     if (!userId) return socket.disconnect()
     const user = await prisma.user.findUnique({
       where: {
