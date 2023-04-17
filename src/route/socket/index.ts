@@ -73,7 +73,7 @@ const socket = (server: HttpServer) => {
       'chatMessage',
       async (chatRoomId: string, messageType: MessageType, content: string) => {
         if (!socket.rooms.has('chat:' + chatRoomId)) return
-        await prisma.message.create({
+        const message = await prisma.message.create({
           data: {
             senderId: userId,
             messageType,
@@ -82,6 +82,7 @@ const socket = (server: HttpServer) => {
           },
         })
         io.to('chat:' + chatRoomId).emit('chatMessage', {
+          messageId: message.messageId,
           senderId: userId,
           senderName: username,
           profileImage: user.profileImage,
