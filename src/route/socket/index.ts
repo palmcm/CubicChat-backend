@@ -23,9 +23,9 @@ const socket = (server: HttpServer) => {
   )
 
   io.on('connection', async (socket) => {
-    const bearerHeader = socket.handshake.headers.authorization
-    if (!bearerHeader) return socket.disconnect()
-    const token = bearerHeader.split(' ')[1]
+    const bearerToken = socket.handshake.auth.token
+    if (!bearerToken) return socket.disconnect()
+    const token = bearerToken.split(' ')[1]
     const userId = verifyToken(token)
     if (!userId) return socket.disconnect()
     const user = await prisma.user.findUnique({
