@@ -46,7 +46,7 @@ app.use('/users', authMiddleware, userRouter)
 app.use('/groups', authMiddleware, groupRouter)
 app.use('/chat', authMiddleware, chatRouter)
 
-app.use('/', (req, res) => {
+app.use('/hello', (req, res) => {
   res.send('Hello world')
 })
 
